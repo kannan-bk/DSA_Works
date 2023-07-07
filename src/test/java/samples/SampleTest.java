@@ -320,8 +320,17 @@ public class SampleTest {
 
 	}
 
+	
+	static  void loopWorks() {
+		
+		System.out.println("i  j");
+		
+		for(int i=0;i<5;i++) {
+			
+		}
+	}
 	public static void main(String[] args) {
-		lengthOfLastWord();
+		loopWorks();
 
 	}
 
