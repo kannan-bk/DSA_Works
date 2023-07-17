@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -825,12 +826,203 @@ class SampleTest {
 
         
         
+	}
+	
+	
+    // Method to count the number of common factors between two integers
+    public static long countCommonFactors(long a, long b) {
+        // Calculate the GCD using the Euclidean algorithm
+        long gcd = calculateGCD(a, b);
+System.out.println(gcd);
+        // Count the factors of the GCD
+        long factors = 0;
+        for (long i = 1; i * i <= gcd; i++) {
+        	System.out.println(1+" i  gcd "+gcd);
+            if (gcd % i == 0) {
+                factors++;
+                if (i != gcd / i) {
+                    factors++;
+                }
+            }
+        }
+
+        return factors;
+    }
+
+    // Method to calculate the GCD of two integers using the Euclidean algorithm
+    public static long calculateGCD(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return calculateGCD(b, a % b);
+    }
+    
+    
+    static void pointersExample() {
+    	 int num1 = 10;
+    	 int num2 = num1;
+    	 
+    	 num1 =11;
+    	 num2=num1;
+    	 
+    	 
+    	 System.out.println("num1 "+num1);
+    	 System.out.println("num2 "+num2);
+    	 
+    	 HashMap<String, Integer> hm1 = new HashMap<>();
+    	 HashMap<String, Integer> hm2 = new HashMap<>();
+    	 
+    	 hm1.put("Value", 11);
+    	 
+    	 hm2 = hm1;
+    	 
+    	 hm1.put("Value", 12);
+    	 
+    	 System.out.println(hm1+" hm1");
+    	 System.out.println(hm2+" hm2");
+    	 
+    	
+    }
+    
+    
+    static void addAllNumbersFromString() {
+    	String s = "Welcome123To456India789";
+    	int sum =0;
+    	String s1 = "";
+    	for(int i=0;i<s.toCharArray().length;i++) {
+    		if(Character.isDigit(s.charAt(i))) {
+    			s1 = s1.concat(String.valueOf(s.charAt(i)));
+    		} else {
+    			s1 = s1.concat(" ");
+    		}
+    		
+    	}
+    	
+    	String[] temp = s1.split(" ");
+    	
+    	for(String num: temp) {
+    		if(!num.equals("")) {
+    			sum = sum+Integer.parseInt(num.trim());	
+    		}
+    		
+    		
+    	}
+    	System.out.println(s1);
+    	System.out.println(sum);
+    }
+    
+    static void bestTimeToBuyStock() {
+    	int prices[] = {7,1,5,3,6,4};
+    	int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int price : prices) {
+        	//System.out.println("price: "+price);
+            if (price < minPrice) {
+                minPrice = price;
+            } else {
+                int profit = price - minPrice;
+                System.out.println("Profit "+profit+" price: "+price+" minprice: "+minPrice);
+                if (profit > maxProfit) {
+                    maxProfit = profit;
+                }
+            }
+        }
+        
+        System.out.println(maxProfit);
+    }
+    
+    static List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>>map=new HashMap<>();
+        for(String e:strs){
+            char ch[]=e.toCharArray();
+            Arrays.sort(ch);
+           // System.out.println(Arrays.toString(ch));
+            String sorted=new String(ch);
+            System.out.println(sorted);
+            if(!map.containsKey(sorted)){
+                map.put(sorted,new ArrayList<String>());
+            }
+            map.get(sorted).add(e);
+        }
+        
+        
+        Map<String, List<String>> hm = new HashMap<>();
+        
+        for(String v:strs) {
+        	char[] c = v.toCharArray();
+        	Arrays.sort(c);
+        	
+        	String ns = new String(c);
+        	
+        	if(!hm.containsKey(ns)) {
+        		hm.put(ns, new ArrayList<String>());
+        		
+        	}
+        	
+        	hm.get(ns).add(v);
+        }
+        
+        return new LinkedList<>(map.values());
+        
+    }
+
+    static int minimumSpeed(int dist[], double hour) {
+
+        int sum =0 ;
+
+        for(int i=0;i<dist.length;i++) {
+            sum = sum + dist[i];
+        }
+        
+        long speed = Math.round(sum/hour);
+        float sp = 0.0f;
+        for(int i=0;i<dist.length;i++) {
+          sp = sp + dist[i]/speed; 
+        }
+        
+        if(sp <= hour) {
+        	return (int)sp;
+        } else {
+        	return -1;
+        }
+        
+       
+        
+    }
+    static void twoSum(int[] nums, int target) {
+        
+    	int arr[] = new int[2];
+    	for (int i = 0; i < nums.length-1; i++) {
+			for (int j = 1; j < nums.length; j++) {
+				System.out.println(i+" "+j);
+				System.out.println(nums[i]+nums[j]+" tAR");
+				if(nums[i]+nums[j]==target) {
+					arr[0] = i;
+					arr[1] = j;
+					
+				}
+				
+			}
+		}
+    	
+    	System.out.println(Arrays.toString(arr));
+    }
+    
+    
+    public static void main(String[] args) {
+    	int a[] = {5,5};
+    
+    	twoSum(a,10);
+	}
+    
+    
 
 	}
-	public static void main(String[] args) {
-		//findCharacterCount();
-		duplicatesRemoveUsingLoop();
-		
-	}
+	
+	
 
-}
+
+	
+	
+
